@@ -1,0 +1,57 @@
+using System;
+
+namespace TriangleType
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            double a, b, c;
+            Console.WriteLine("Введите длины сторон треугольника:");
+            Console.Write("a = ");
+            while (!double.TryParse(Console.ReadLine(), out a) || a <= 0)
+            {
+                Console.WriteLine("Некорректный ввод, введите положительное число:");
+                Console.Write("a = ");
+            }
+            Console.Write("b = ");
+            while (!double.TryParse(Console.ReadLine(), out b) || b <= 0)
+            {
+                Console.WriteLine("Некорректный ввод, введите положительное число:");
+                Console.Write("b = ");
+            }
+            Console.Write("c = ");
+            while (!double.TryParse(Console.ReadLine(), out c) || c <= 0)
+            {
+                Console.WriteLine("Некорректный ввод, введите положительное число:");
+                Console.Write("c = ");
+            }
+
+            if (a + b <= c || a + c <= b || b + c <= a)
+            {
+                Console.WriteLine("Ошибка: эти длины сторон не могут образовывать треугольник.");
+            }
+            else
+            {
+                double p = (a + b + c) / 2;
+                double area = Math.Sqrt(p * (p - a) * (p - b) * (p - c));
+                Console.WriteLine("Площадь треугольника = " + area);
+
+                if (a * a + b * b == c * c || a * a + c * c == b * b || b * b + c * c == a * a)
+                {
+                    Console.WriteLine("Треугольник прямоугольный.");
+                }
+                else if (a * a + b * b < c * c || a * a + c * c < b * b || b * b + c * c < a * a)
+                {
+                    Console.WriteLine("Треугольник тупоугольный.");
+                }
+                else
+                {
+                    Console.WriteLine("Треугольник остроугольный.");
+                }
+            }
+
+            Console.ReadKey();
+        }
+    }
+}
